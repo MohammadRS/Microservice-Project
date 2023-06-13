@@ -1,7 +1,7 @@
 version: '3.4'
 
 services:
-  catalog:
+  catalogdb:
     image: mongo
 
   catalog.api:
@@ -9,5 +9,4 @@ services:
     build:
       context: .
       dockerfile: Services/Catalog/Catalog.Api/Dockerfile
-  
 
