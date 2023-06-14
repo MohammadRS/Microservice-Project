@@ -8,11 +8,11 @@ namespace Catalog.Api.Data
     {
         public IMongoCollection<Product> Products { get; }
 
-        public CatalogContext(IConfiguration _configuration)
+        public CatalogContext(IConfiguration configuration)
         {
-            var client = new MongoClient(_configuration.GetValue<string>("DatabaseSetting:ConnectionString"));
-            var database = client.GetDatabase(_configuration.GetValue<string>("DatabaseSetting:DatabaseName"));
-            Products = database.GetCollection<Product>(_configuration.GetValue<string>("DatabaseSetting:CollectionName"));
+            var client = new MongoClient(configuration.GetValue<string>("DatabaseSettings:ConnectionString"));
+            var database = client.GetDatabase(configuration.GetValue<string>("DatabaseSettings:DatabaseName"));
+            Products = database.GetCollection<Product>(configuration.GetValue<string>("DatabaseSettings:CollectionName"));
             CatalogContextSeed.SeedData(Products);
         }
     }
